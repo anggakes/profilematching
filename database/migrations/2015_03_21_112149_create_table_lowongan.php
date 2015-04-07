@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableProfilSyaratJabatan extends Migration {
+class CreateTableLowongan extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,11 @@ class CreateTableProfilSyaratJabatan extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('profil_syarat_jabatan', function(Blueprint $table)
+		Schema::create('lowongan', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('id_karyawan')->unsigned();
-			$table->string('pendidikan_terakhir');
-			$table->string('pengalaman_kerja');
+			$table->string('nama');
+			$table->string('kode');
 			$table->timestamps();
 		});
 	}
@@ -29,7 +28,7 @@ class CreateTableProfilSyaratJabatan extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('profil_syarat_jabatan');
+		Schema::drop('lowongan');
 	}
 
 }

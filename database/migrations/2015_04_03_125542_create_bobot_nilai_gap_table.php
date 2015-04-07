@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableLowonganJabatan extends Migration {
+class CreateBobotNilaiGapTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,12 @@ class CreateTableLowonganJabatan extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('lowongan_jabatan', function(Blueprint $table)
+		Schema::create('bobot_nilai_gap', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('nama');
-			$table->string('kode');
+			$table->integer('selisih');
+			$table->float('bobot');
+			$table->string('keterangan',255);
 			$table->timestamps();
 		});
 	}
@@ -28,7 +29,7 @@ class CreateTableLowonganJabatan extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('lowongan_jabatan');
+		Schema::drop('bobot_nilai_gap');
 	}
 
 }

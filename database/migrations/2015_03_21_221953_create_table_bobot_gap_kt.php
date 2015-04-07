@@ -15,9 +15,19 @@ class CreateTableBobotGapKt extends Migration {
 		Schema::create('bobot_gap_kt', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('kt01')->unsigned();
-			$table->integer('kt02')->unsigned();
+			$table->integer('id_karyawan')->unsigned();
+			$table->integer('id_lowongan')->unsigned();
+			$table->integer('kt1')->unsigned();
+			$table->integer('kt2')->unsigned();
 			$table->timestamps();
+
+			$table->foreign('id_karyawan')
+      		->references('id')->on('karyawan')
+      		->onDelete('cascade');
+
+      		$table->foreign('id_lowongan')
+      		->references('id')->on('lowongan')
+      		->onDelete('cascade');
 		});
 	}
 

@@ -11,6 +11,8 @@
           <th>Nama</th>
           <th>Agama</th>
           <th>Alamat</th>
+          <th>Pendidikan Terakhir</th>
+          <th>Lama Bekerja</th>
           <th>#</th>
         </tr>
         </thead>

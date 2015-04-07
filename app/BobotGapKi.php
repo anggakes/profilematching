@@ -7,11 +7,13 @@ class BobotGapKi extends Model {
 	protected $table ='bobot_gap_ki';
 	protected $guarded =['id'];
 	protected $fillable = [
-		'kl01',
-		'kl02',
-		'kl03',
-		'kl04',
-		'kl05'
+		'id_lowongan',
+		'id_karyawan',
+		'ki1',
+		'ki2',
+		'ki3',
+		'ki4',
+		'ki5'
 	];
 
 }

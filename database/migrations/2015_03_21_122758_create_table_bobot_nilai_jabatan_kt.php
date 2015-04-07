@@ -16,9 +16,13 @@ class CreateTableBobotNilaiJabatanKt extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('id_lowongan')->unsigned();
-			$table->integer('kt01')->unsigned();
-			$table->integer('kt02')->unsigned();
+			$table->integer('kt1')->unsigned();
+			$table->integer('kt2')->unsigned();
 			$table->timestamps();
+
+			$table->foreign('id_lowongan')
+      		->references('id')->on('lowongan')
+      		->onDelete('cascade');
 		});
 	}
 

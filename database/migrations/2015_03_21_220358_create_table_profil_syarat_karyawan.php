@@ -16,10 +16,16 @@ class CreateTableProfilSyaratKaryawan extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('id_karyawan')->unsigned();
-			$table->string('pendidikan_terakhir');
-			$table->string('pengalaman_kerja');
+			$table->enum('pendidikan_terakhir',['SMA','D1','D2','D3','S1','S2','S3']);
+			$table->string('tgl_masuk_kerja');
 			$table->timestamps();
+			
+			$table->foreign('id_karyawan')
+      		->references('id')->on('karyawan')
+      		->onDelete('cascade');
+
 		});
+
 	}
 
 	/**

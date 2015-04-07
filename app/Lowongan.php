@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class LowonganJabatan extends Model {
+class Lowongan extends Model {
 
-	protected $table ='lowongan_jabatan';
+	protected $table ='lowongan';
 	protected $guarded =['id'];
 	protected $fillable = [
 		'nama',

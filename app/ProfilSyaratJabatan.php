@@ -7,7 +7,7 @@ class ProfilSyaratJabatan extends Model {
 	protected $table ='profil_syarat_jabatan';
 	protected $guarded =['id'];
 	protected $fillable = [
-		'id_karyawan',
+		'id_lowongan',
 		'pendidikan_terakhir',
 		'pengalaman_kerja'
 	];

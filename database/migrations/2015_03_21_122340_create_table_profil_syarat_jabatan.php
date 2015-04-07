@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableBobotNilaiJabatanKi extends Migration {
+class CreateTableProfilSyaratJabatan extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,16 +12,17 @@ class CreateTableBobotNilaiJabatanKi extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('bobot_nilai_jabatan_ki', function(Blueprint $table)
+		Schema::create('profil_syarat_jabatan', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('id_lowongan')->unsigned();
-			$table->integer('ki01')->unsigned();
-			$table->integer('ki02')->unsigned();
-			$table->integer('ki03')->unsigned();
-			$table->integer('ki04')->unsigned();
-			$table->integer('ki05')->unsigned();
+			$table->string('pendidikan_terakhir');
+			$table->string('pengalaman_kerja');
 			$table->timestamps();
+
+			$table->foreign('id_lowongan')
+      		->references('id')->on('lowongan')
+      		->onDelete('cascade');
 		});
 	}
 
@@ -32,7 +33,7 @@ class CreateTableBobotNilaiJabatanKi extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('bobot_nilai_jabatan_ki');
+		Schema::drop('profil_syarat_jabatan');
 	}
 
 }

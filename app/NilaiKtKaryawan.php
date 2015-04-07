@@ -8,8 +8,8 @@ class NilaiKtKaryawan extends Model {
 	protected $guarded =['id'];
 	protected $fillable = [
 		'id_karyawan',
-		'kt01',
-		'kt02'
+		'kt1',
+		'kt2'
 	];
 
 }

@@ -2,16 +2,17 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class NilaiKlKaryawan extends Model {
+class NilaiKiKaryawan extends Model {
 
-	protected $table ='nilai_kl_karyawan';
+	protected $table ='nilai_ki_karyawan';
 	protected $guarded =['id'];
 	protected $fillable = [
 		'id_karyawan',
-		'kl01',
-		'kl02',
-		'kl03',
-		'kl04'
+		'ki1',
+		'ki2',
+		'ki3',
+		'ki4',
+		'ki5'
 	];
 
 

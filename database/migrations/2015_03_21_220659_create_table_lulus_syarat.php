@@ -18,6 +18,14 @@ class CreateTableLulusSyarat extends Migration {
 			$table->integer('id_karyawan')->unsigned();
 			$table->integer('id_lowongan')->unsigned();
 			$table->timestamps();
+
+			$table->foreign('id_karyawan')
+      		->references('id')->on('karyawan')
+      		->onDelete('cascade');
+
+      		$table->foreign('id_lowongan')
+      		->references('id')->on('lowongan')
+      		->onDelete('cascade');
 		});
 	}
 

@@ -16,11 +16,16 @@ class CreateTableNilaiKiKaryawan extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('id_karyawan')->unsigned();
-			$table->integer('ki01')->unsigned();
-			$table->integer('ki02')->unsigned();
-			$table->integer('ki03')->unsigned();
-			$table->integer('ki04')->unsigned();
+			$table->integer('ki1')->unsigned();
+			$table->integer('ki2')->unsigned();
+			$table->integer('ki3')->unsigned();
+			$table->integer('ki4')->unsigned();
+			$table->integer('ki5')->unsigned();
 			$table->timestamps();
+
+			$table->foreign('id_karyawan')
+      		->references('id')->on('karyawan')
+      		->onDelete('cascade');
 		});
 	}
 

@@ -2,17 +2,17 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class BobotNilaiJabatanKl extends Model {
+class BobotNilaiJabatanKi extends Model {
 
-	protected $table ='bobot_nilai_jabatan_kl';
+	protected $table ='bobot_nilai_jabatan_ki';
 	protected $guarded =['id'];
 	protected $fillable = [
 		'id_lowongan',
-		'kl01',
-		'kl02',
-		'kl03',
-		'kl04',
-		'kl05'
+		'ki1',
+		'ki2',
+		'ki3',
+		'ki4',
+		'ki5'
 	];
 
 }

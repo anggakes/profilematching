@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+
 
 Route::get('home', 'HomeController@index');
 
@@ -25,7 +25,16 @@ Route::get(
 	['as'=>'karyawan.datatables',
 	'uses'=>'KaryawanController@datatables']);
 
+Route::get('karyawan/nilai/{id}',
+	['as'=>'karyawan.get.nilai',
+	'uses'=>'KaryawanController@getNilai']);
+
+Route::post('karyawan/nilai/{id}',
+	['as'=>'karyawan.post.nilai',
+	'uses'=>'KaryawanController@postNilai']);
+
 Route::resource('karyawan','KaryawanController');
+
 
 Route::get(
 	'lowonganjabatan/datatables',

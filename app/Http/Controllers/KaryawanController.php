@@ -1,13 +1,23 @@
 <?php namespace App\Http\Controllers;
 
 use App\Karyawan;
+use App\ProfilSyaratKaryawan;
 use App\Http\Requests;
 use App\Http\Requests\KaryawanRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\HttpResponse;
 
+
 class KaryawanController extends Controller {
+
+	/* 
+	|
+	|	menggunakan route model binding 
+	|	model binding di simpan di providers/RouteServiceProvider
+	|
+	*/
+
 
 	public function index()
 	{
@@ -31,10 +41,12 @@ class KaryawanController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(KaryawanRequest $request)
+	public function store(Request $request)
 	{
 		//
-		Karyawan::create($request->all());
+		$p = new ProfilSyaratKaryawan($request->input('profil'));
+		$karyawan = Karyawan::create($request->input('karyawan'));
+		$karyawan->profilSyaratKaryawan()->save($p);
 		//Auth::user()->articles()->save($article);
 		return redirect('karyawan');
 
@@ -46,9 +58,9 @@ class KaryawanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($karyawan)
 	{		
-		$karyawan=Karyawan::findOrFail($id);
+		
 		return view('karyawan.show',compact('karyawan'));
 	}
 
@@ -58,9 +70,8 @@ class KaryawanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($karyawan)
 	{
-		$karyawan=Karyawan::findOrFail($id);
 		return view('karyawan.edit',compact('karyawan'));
 	}
 
@@ -70,9 +81,12 @@ class KaryawanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Request $request, $id)
-	{
-		Karyawan::findOrFail($id)->update($request->all());
+	public function update(Request $request, $karyawan)
+	{	
+		
+		$karyawan->update($request->input("karyawan"));
+		$karyawan->profilSyaratKaryawan()->update($request->input('profil'));
+
 		return redirect('karyawan');
 	}
 
@@ -82,10 +96,28 @@ class KaryawanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($karyawan)
 	{
 		//
-		Karyawan::findOrFail($id)->delete();
+		$karyawan->delete();
+		return redirect()->route('karyawan.index');
+	}
+
+	
+	/* tidak terpengaruh model binding */
+
+	public function getNilai($id_karyawan){
+		$karyawan = Karyawan::findOrFail($id_karyawan);
+		return view('karyawan.nilai')
+			->with('karyawan',$karyawan);
+	}
+
+	public function PostNilai($id_karyawan, Request $request){
+		
+		$karyawan =  Karyawan::findOrFail($id_karyawan);
+
+		$karyawan->saveNilai($request->all());
+
 		return redirect()->route('karyawan.index');
 	}
 
@@ -99,11 +131,15 @@ class KaryawanController extends Controller {
 			$l[1] = $value->nama;
 			$l[2] = $value->agama;
 			$l[3] = $value->alamat;
-			$l[4] = "
+			$l[4] = $value->profilSyaratKaryawan->pendidikan_terakhir;
+
+			$l[5] =$value->lamaBekerja();
+			$l[6] = "
 				<a href='".route('karyawan.edit',$value->id)."' data-toggle='modal' data-target='#myModal'>Edit</a> - 
 				<a href='".route('karyawan.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' >Hapus</a> - 
-				<a href='".route('karyawan.show',$value->id)."'>Kelola</a>
-			";
+				<a href='".route('karyawan.show',$value->id)."'>Detail</a> - 
+				<a href='".route('karyawan.get.nilai',$value->id)."'>Input Nilai</a>
+							";
 
 			$data[$i]=$l;
 			$i++;

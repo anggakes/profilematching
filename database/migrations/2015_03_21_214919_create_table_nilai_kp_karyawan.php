@@ -16,10 +16,14 @@ class CreateTableNilaiKpKaryawan extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('id_karyawan')->unsigned();
-			$table->integer('kp01')->unsigned();
-			$table->integer('kp02')->unsigned();
-			$table->integer('kp03')->unsigned();
+			$table->integer('kp1')->unsigned();
+			$table->integer('kp2')->unsigned();
+			$table->integer('kp3')->unsigned();
 			$table->timestamps();
+
+			$table->foreign('id_karyawan')
+      		->references('id')->on('karyawan')
+      		->onDelete('cascade');
 		});
 	}
 

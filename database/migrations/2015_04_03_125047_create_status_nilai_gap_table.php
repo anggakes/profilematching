@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableBobotNilaiJabatanKp extends Migration {
+class CreateStatusNilaiGapTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,12 @@ class CreateTableBobotNilaiJabatanKp extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('bobot_nilai_jabatan_kp', function(Blueprint $table)
+		Schema::create('status_nilai_gap', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('id_lowongan')->unsigned();
-			$table->integer('kp01')->unsigned();
-			$table->integer('kp02')->unsigned();
-			$table->integer('kp03')->unsigned();
+			$table->integer('selisih');
+			$table->enum('status',['V','X']);
+			$table->string('keterangan',255);
 			$table->timestamps();
 		});
 	}
@@ -30,7 +29,7 @@ class CreateTableBobotNilaiJabatanKp extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('bobot_nilai_jabatan_kp');
+		Schema::drop('status_nilai_gap');
 	}
 
 }

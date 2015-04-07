@@ -9,7 +9,7 @@ class ProfilSyaratKaryawan extends Model {
 	protected $fillable = [
 		'id_karyawan',
 		'pendidikan_terakhir',
-		'pengalaman_kerja'
+		'tgl_masuk_kerja'
 	];
 
 }

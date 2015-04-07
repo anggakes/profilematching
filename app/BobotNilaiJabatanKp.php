@@ -8,9 +8,9 @@ class BobotNilaiJabatanKp extends Model {
 	protected $guarded =['id'];
 	protected $fillable = [
 		'id_lowongan',
-		'kp01',
-		'kp02',
-		'kp03'
+		'kp1',
+		'kp2',
+		'kp3'
 	];
 
 }
