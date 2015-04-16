@@ -25,7 +25,7 @@ class Karyawan extends Model {
 
 			$lama_kerja = $masuk->diff($keluar)->y;
 
-			return $lama_kerja." tahun";
+			return $lama_kerja;
 	}
 
 	public function profilSyaratKaryawan(){

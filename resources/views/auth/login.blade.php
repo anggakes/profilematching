@@ -1,12 +1,15 @@
-@extends('app')
+@extends('template.backend')
 
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Login</div>
-				<div class="panel-body">
+
+<div class='row'>
+	<div class='span7'>
+		asas
+	</div>
+	<div class='span4'>
+			
+				<h3>Login</h3> <hr>
+				
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
 							<strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -18,13 +21,13 @@
 						</div>
 					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="/auth/login">
+					<form class="" role="form" method="POST" action="{{ url('/login') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">E-Mail Address</label>
 							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
+								<input type="text" class="form-control" name="username" value="{{ old('username') }}">
 							</div>
 						</div>
 
@@ -51,13 +54,11 @@
 									Login
 								</button>
 
-								<a href="/password/email">Forgot Your Password?</a>
+								
 							</div>
 						</div>
 					</form>
-				</div>
-			</div>
-		</div>
+				
 	</div>
-</div>
+</div> <!-- /span 4 login -->	
 @endsection

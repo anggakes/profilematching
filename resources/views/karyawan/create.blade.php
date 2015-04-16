@@ -1,4 +1,4 @@
-@extends('app')
+@extends('template.backend')
 
 @section('content')
 <h1>Tambah Karyawan Baru</h1>

@@ -1,4 +1,4 @@
-@extends('app')
+@extends('template.backend')
 
 @section('content')
 
@@ -65,7 +65,7 @@
 					<div class="control-group">											
 						<label class="control-label" for="nama">Pengoperasian Program Komputer</label>
 						<div class="controls">
-							<input type="text" class="span6" name="kt[kt2]" value="{!! @$karyawan->nilaiKtKaryawan->kt1 !!}">
+							<input type="text" class="span6" name="kt[kt2]" value="{!! @$karyawan->nilaiKtKaryawan->kt2 !!}">
 						</div> <!-- /controls -->				
 					</div> <!-- /control-group -->
 		

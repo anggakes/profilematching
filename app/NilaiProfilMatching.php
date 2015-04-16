@@ -2,21 +2,17 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProfilSyaratKaryawan extends Model {
+class NilaiProfilMatching extends Model {
 
-	protected $table ='profil_syarat_karyawan';
+	protected $table ='nilai_profil_matching';
 	protected $guarded =['id'];
 	protected $fillable = [
 		'id_karyawan',
-		'pendidikan_terakhir',
-		'tgl_masuk_kerja',
-		'nilai_pendidikan_terakhir'
+		'id_lowongan'
 	];
 
 	public function karyawan(){
 		return $this->belongsTo("App\Karyawan","id_karyawan");
 	}
-
-	
 
 }

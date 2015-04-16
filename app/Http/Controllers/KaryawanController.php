@@ -7,7 +7,7 @@ use App\Http\Requests\KaryawanRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\HttpResponse;
-
+use Auth;
 
 class KaryawanController extends Controller {
 
@@ -17,7 +17,15 @@ class KaryawanController extends Controller {
 	|	model binding di simpan di providers/RouteServiceProvider
 	|
 	*/
-
+	public $pendidikan = [
+		'SMA' => 1,
+		'D1' => 2,
+		'D2' => 2,
+		'D3' => 2,
+		'S1' => 3,
+		'S2' => 4,
+		'S3' => 5,
+	];
 
 	public function index()
 	{
@@ -44,7 +52,9 @@ class KaryawanController extends Controller {
 	public function store(Request $request)
 	{
 		//
-		$p = new ProfilSyaratKaryawan($request->input('profil'));
+		$sk = $request->input('profil');
+		$sk['nilai_pendidikan_terakhir'] = $this->pendidikan[$sk['pendidikan_terakhir']]; 
+		$p = new ProfilSyaratKaryawan($sk);
 		$karyawan = Karyawan::create($request->input('karyawan'));
 		$karyawan->profilSyaratKaryawan()->save($p);
 		//Auth::user()->articles()->save($article);
@@ -83,9 +93,11 @@ class KaryawanController extends Controller {
 	 */
 	public function update(Request $request, $karyawan)
 	{	
-		
+		$sk = $request->input('profil');
+		$sk['nilai_pendidikan_terakhir'] = $this->pendidikan[$sk['pendidikan_terakhir']]; 
+
 		$karyawan->update($request->input("karyawan"));
-		$karyawan->profilSyaratKaryawan()->update($request->input('profil'));
+		$karyawan->profilSyaratKaryawan()->update($sk);
 
 		return redirect('karyawan');
 	}
@@ -127,6 +139,18 @@ class KaryawanController extends Controller {
 		$l=array();
 		$i=0;
 		foreach ($karyawan as $value) {
+			$aksi_admin = (Auth::user()->roles != 'admin') ?
+			"" :
+			"<a href='".route('karyawan.edit',$value->id)."' >Edit</a> - 
+			<a href='".route('karyawan.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' >Hapus</a> - 
+			<a href='".route('karyawan.show',$value->id)."'>Detail</a>
+			";
+			$aksi_tim_independent = (Auth::user()->roles != 'tim independent') ?
+			"" :
+			"<a href='".route('karyawan.show',$value->id)."'>Detail</a> - 
+				<a href='".route('karyawan.get.nilai',$value->id)."'>Input Nilai</a>
+			";
+
 			$l[0] = $value->nik;
 			$l[1] = $value->nama;
 			$l[2] = $value->agama;
@@ -135,11 +159,9 @@ class KaryawanController extends Controller {
 
 			$l[5] =$value->lamaBekerja();
 			$l[6] = "
-				<a href='".route('karyawan.edit',$value->id)."' data-toggle='modal' data-target='#myModal'>Edit</a> - 
-				<a href='".route('karyawan.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' >Hapus</a> - 
-				<a href='".route('karyawan.show',$value->id)."'>Detail</a> - 
-				<a href='".route('karyawan.get.nilai',$value->id)."'>Input Nilai</a>
-							";
+				$aksi_admin
+				$aksi_tim_independent
+				";
 
 			$data[$i]=$l;
 			$i++;

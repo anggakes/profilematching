@@ -11,4 +11,8 @@ class LulusSyarat extends Model {
 		'id_lowongan'
 	];
 
+	public function karyawan(){
+		return $this->belongsTo("App\Karyawan","id_karyawan");
+	}
+
 }

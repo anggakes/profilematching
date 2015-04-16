@@ -1,9 +1,10 @@
-@extends('app')
+@extends('template.backend')
 
 @section('content')
-
-<h1>Karyawan</h1>
  <a class="btn btn-primary pull-right" id="sign"  href="{!! route('karyawan.create') !!}"><i class="icon-g-circle-plus"></i>Tambah</a>
+<h1>Karyawan</h1>
+
+<hr>
     <table class='table datatables'>
         <thead>
         <tr>
@@ -22,9 +23,9 @@
     </table>
 @stop
 
-@section('footer')
+@section('js')
 
- {!!HTML::script("assets/laravel/laravel.methodHandler.js")!!} 
+ {!!Html::script("assets/laravel/laravel.methodHandler.js")!!} 
    
  <script type="text/javascript">    
 

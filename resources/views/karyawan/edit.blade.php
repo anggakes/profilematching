@@ -1,4 +1,4 @@
-@extends('app')
+@extends('template.backend')
 
 @section('content')
 	<h1>Edit: {!! $karyawan-> nik !!} </h1>

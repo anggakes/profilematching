@@ -1,9 +1,10 @@
-@extends('app')
+@extends('template.backend')
 
 @section('content')
+ <a class="btn btn-primary pull-right" id="sign"  href="{!! route('lowongan.create') !!}"><i class="icon-g-circle-plus"></i>Tambah</a>
+<h1>Lowongan Jabatan</h1>
 
-<h1>Karyawan</h1>
- <a class="btn btn-primary pull-right" id="sign"  href="{!! route('lowonganjabatan.create') !!}"><i class="icon-g-circle-plus"></i>Tambah</a>
+ <hr>
     <table class='table datatables'>
         <thead>
         <tr>
@@ -18,16 +19,16 @@
     </table>
 @stop
 
-@section('footer')
+@section('js')
 
- {!!HTML::script("assets/laravel/laravel.methodHandler.js")!!} 
+ {!!Html::script("assets/laravel/laravel.methodHandler.js")!!} 
    
  <script type="text/javascript">    
 
     $(document).ready(function(){
 
           $(".datatables").dataTable({
-              "ajax" : "{!! route('lowonganjabatan.datatables') !!}",
+              "ajax" : "{!! route('lowongan.datatables') !!}",
               "fnInitComplete": function(oSettings, json) {
                   //inisialisi saat datatables setelah load
                    $('a[data-method]').click(function(e){
