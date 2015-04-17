@@ -20,7 +20,7 @@
 {!!Html::script("assets/datatables/jquery.datatables.js")!!}
 {!!Html::style("assets/datatables/jquery.datatables.css")!!}
 <!-- Css -->
-@yield('css');
+@yield('css')
 
 
 <!-- Le Html5 shim, for IE6-8 support of Html5 elements -->
@@ -34,7 +34,7 @@
     <div class="container"><a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
                     class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">{!!Html::image("assets/logo/nindya-01.png");!!} Sistem Informasi Kenaikan Jabatan </a>
       <div class="nav-collapse">
-        <ul class="nav pull-right">
+        <ul class="nav pull-right" id='kanan'>
         @if(Auth::check())
         
            <li><a href="{!! route("user.index")!!}"><i class="icon-user"></i><span>{!! @Auth::user()->name!!}</span> </a> </li>
@@ -174,7 +174,7 @@ saat ini beroperasi diseluruh wilayah Republik Indonesia yang terbagi kedalam li
 	    refreshModal("Loading..");
 </script>
 
-@yield('js');
+@yield('js')
 
 </body>
 
