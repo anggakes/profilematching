@@ -22,10 +22,59 @@ class StepByStepController extends Controller {
 
 
 		$pm = new ProfileMatching($id_lowongan,$bobot,$nilai);
-		$data['Gap Ki'] = $pm->gapKi();
-		$data['Gap Kp'] = $pm->gapKp();
-		$data['Gap Kt'] = $pm->gapKt();
-		return $data;
+		$data['ki'] = $pm->gapKi();
+		$data['kp'] = $pm->gapKp();
+		$data['kt'] = $pm->gapKt();
+		$lulus = LulusSyarat::where("id_lowongan",'=',$id_lowongan)->get();
+
+		return view('stepbystep.gap')
+		->with('data',$data)
+		->with('nilai',$nilai)
+		->with('lulus',$lulus)
+		->with('bobot',$bobot)
+		->with('id_lowongan',$id_lowongan);
+	}
+
+	public function getConvertgap($id_lowongan){
+
+		$bobot = $this->getMakeBobot($id_lowongan);
+ 
+		$nilai = $this->getMakeKaryawan($id_lowongan);
+
+
+		$pm = new ProfileMatching($id_lowongan,$bobot,$nilai);
+		$data['ki'] = $pm->convertGap($pm->gapKi());
+		$data['kp'] = $pm->convertGap($pm->gapKp());
+		$data['kt'] = $pm->convertGap($pm->gapKt());
+		$lulus = LulusSyarat::where("id_lowongan",'=',$id_lowongan)->get();
+
+		return view('stepbystep.convertgap')
+		->with('data',$data)
+		->with('nilai',$nilai)
+		->with('lulus',$lulus)
+		->with('bobot',$bobot)
+		->with('id_lowongan',$id_lowongan);
+	}
+
+	public function getCoreSecondaryFactor($id_lowongan){
+
+		$bobot = $this->getMakeBobot($id_lowongan);
+ 
+		$nilai = $this->getMakeKaryawan($id_lowongan);
+
+
+		$pm = new ProfileMatching($id_lowongan,$bobot,$nilai);
+		$data['ki'] = $pm->convertGap($pm->gapKi());
+		$data['kp'] = $pm->convertGap($pm->gapKp());
+		$data['kt'] = $pm->convertGap($pm->gapKt());
+		$lulus = LulusSyarat::where("id_lowongan",'=',$id_lowongan)->get();
+
+		return view('stepbystep.coresecondaryfactor')
+		->with('data',$data)
+		->with('nilai',$nilai)
+		->with('lulus',$lulus)
+		->with('bobot',$bobot)
+		->with('id_lowongan',$id_lowongan);
 	}
 
 		public function getMakeBobot($id_lowongan){
