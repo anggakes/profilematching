@@ -12,18 +12,16 @@
 */
 
 
-
-
 Route::get(
 	'karyawan/datatables',
 	['as'=>'karyawan.datatables',
 	'uses'=>'KaryawanController@datatables']);
 
-Route::get('karyawan/nilai/{id_karyawan}',
+Route::get('karyawan/nilai/{id_lowongan}/{id_karyawan}',
 	['as'=>'karyawan.get.nilai',
 	'uses'=>'KaryawanController@getNilai']);
 
-Route::post('karyawan/nilai/{id_karyawan}',
+Route::post('karyawan/nilai/{id_lowongan}/{id_karyawan}',
 	['as'=>'karyawan.post.nilai',
 	'uses'=>'KaryawanController@postNilai']);
 
@@ -36,6 +34,13 @@ Route::get(
 	'uses'=>'LowonganController@datatables']);
 
 Route::resource('lowongan','LowonganController');
+
+Route::get(
+	'jabatan/datatables',
+	['as'=>'jabatan.datatables',
+	'uses'=>'JabatanController@datatables']);
+
+Route::resource('jabatan','JabatanController');
 
 Route::controller('lowongan/{id_lowongan}/seleksi','SeleksiJabatanController');
 

@@ -12,7 +12,7 @@ class Lowongan extends Model {
 	protected $table ='lowongan';
 	protected $guarded =['id'];
 	protected $fillable = [
-		'nama',
+		'id_jabatan',
 		'kode'
 	];
 
@@ -30,6 +30,10 @@ class Lowongan extends Model {
 	
 	public function profilSyaratJabatan(){
 		return $this->hasOne("App\ProfilSyaratJabatan","id_lowongan");
+	}
+
+	public function jabatan(){
+		return $this->belongsTo("App\Jabatan","id_jabatan");
 	}
 
 	public function createAll($data){

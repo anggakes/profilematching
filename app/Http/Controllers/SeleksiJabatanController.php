@@ -20,28 +20,31 @@ class SeleksiJabatanController extends Controller {
  
 		$nilai = $this->getMakeKaryawan($id_lowongan);
 
-
-		$pm = new ProfileMatching($id_lowongan,$bobot,$nilai);
-		$data = $pm->make();
 		$karyawan = LulusSyarat::where('id_lowongan','=',$id_lowongan)->get();
-		foreach ($karyawan as $key => $value) {
-			$insert[] =[
-				'id_karyawan'=> $value->id_karyawan,
-				'id_lowongan' => $id_lowongan,
-				'nilai' =>$data[$key]
-			];
-		}
+
+			$pm = new ProfileMatching($id_lowongan,$bobot,$nilai);
+			$data = $pm->make();
+			foreach ($karyawan as $key => $value) {
+				$insert[] =[
+					'id_karyawan'=> $value->id_karyawan,
+					'id_lowongan' => $id_lowongan,
+					'nilai' =>$data[$key]
+				];
+			}
+		
 		DB::table('nilai_profil_matching')->where('id_lowongan','=',$id_lowongan)->delete();
 		DB::table('nilai_profil_matching')->insert($insert);
 		return  redirect()->route('lowongan.show',$id_lowongan);
 	
 	}
 
+
+
 	public function getLulusSyarat($id_lowongan){
 		
 		$pm = new SeleksiLulusSyarat($id_lowongan);
 		$pm->saveLulusSyarat();
-		return  redirect()->action('SeleksiJabatanController@getSeleksiJabatan',[$id_lowongan]);
+		return  redirect()->route('lowongan.show',$id_lowongan);
 	
 	}
 

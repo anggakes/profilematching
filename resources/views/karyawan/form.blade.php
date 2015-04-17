@@ -11,13 +11,13 @@
 		<div class="form-group">
 			{!! Form::label('agama','Agama :') !!}
 			{!! Form::select('karyawan[agama]',[
-				'islam'=>'islam',
-				'khatolik'=>'khatolik',
-				'protestan'=>'protestan',
-				'hindu'=>'hindu',
-				'budha'=>'budha',
-				'konghuchu'=>'konghuchu',
-				'lainnya'=>'lainnya'
+				'islam'=>'Islam',
+				'khatolik'=>'Khatolik',
+				'protestan'=>'Protestan',
+				'hindu'=>'Hindu',
+				'budha'=>'Budha',
+				'konghuchu'=>'Konghuchu',
+				'lainnya'=>'Lainnya'
 			],@$karyawan->agama,['class'=>'form-control']) !!}
 		</div>
 
@@ -25,6 +25,7 @@
 			{!! Form::label('alamat','Alamat :') !!}
 			{!! Form::textarea('karyawan[alamat]',@$karyawan->alamat,['class'=>'form-control']) !!}
 		</div>
+		
 		<div class="form-group">
 			{!! Form::label('pendidikan_terakhir','Pendidikan Terakhir :') !!}
 			{!! Form::select('profil[pendidikan_terakhir]',
@@ -42,6 +43,10 @@
 		<div class="form-group">
 			{!! Form::label('tahun_masuk_kerja','Tanggal Masuk Kerja :') !!}
 			{!! Form::input('date','profil[tgl_masuk_kerja]',@$karyawan->profilSyaratKaryawan->tgl_masuk_kerja,['class'=>'form-control']) !!}
+		</div>
+		<div class="form-group">
+			{!! Form::label('nama','Divisi :') !!}
+			{!! Form::select('profil[id_divisi]',$divisi,@$karyawan->profilSyaratKaryawan->id_divisi,['class'=>'form-control']) !!}
 		</div>
 
 		<div class="form-group">

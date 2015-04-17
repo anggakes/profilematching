@@ -2,7 +2,7 @@
 
 @section('content')
 
-{!! Form::open(['route'=>['karyawan.post.nilai',$karyawan->id],'method'=>'post',]) !!}
+{!! Form::open(['route'=>['karyawan.post.nilai',$id_lowongan,$karyawan->id],'method'=>'post',]) !!}
 <h3>Nilai Kompetensi Inti</h3>
 				<div class="control-group">											
 						<label class="control-label" for="kode">Integrity</label>

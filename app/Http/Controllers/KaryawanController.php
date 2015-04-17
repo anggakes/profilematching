@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\HttpResponse;
 use Auth;
+use App\Divisi;
 
 class KaryawanController extends Controller {
 
@@ -40,8 +41,10 @@ class KaryawanController extends Controller {
 	 */
 
 	public function create()
-	{
-		return view('karyawan.create');
+	{	
+
+		return view('karyawan.create')
+		->with('divisi',Divisi::lists('nama','id'));
 	}
 
 	/**
@@ -82,7 +85,8 @@ class KaryawanController extends Controller {
 	 */
 	public function edit($karyawan)
 	{
-		return view('karyawan.edit',compact('karyawan'));
+		return view('karyawan.edit',compact('karyawan'))
+		->with('divisi',Divisi::lists('nama','id'));
 	}
 
 	/**
@@ -118,19 +122,20 @@ class KaryawanController extends Controller {
 	
 	/* tidak terpengaruh model binding */
 
-	public function getNilai($id_karyawan){
+	public function getNilai($id_lowongan, $id_karyawan){
 		$karyawan = Karyawan::findOrFail($id_karyawan);
 		return view('karyawan.nilai')
-			->with('karyawan',$karyawan);
+			->with('karyawan',$karyawan)
+			->with('id_lowongan',$id_lowongan);
 	}
 
-	public function PostNilai($id_karyawan, Request $request){
+	public function PostNilai($id_lowongan, $id_karyawan, Request $request){
 		
 		$karyawan =  Karyawan::findOrFail($id_karyawan);
 
 		$karyawan->saveNilai($request->all());
 
-		return redirect()->route('karyawan.index');
+		return redirect()->route('lowongan.show',$id_lowongan);
 	}
 
 	public function datatables(){
@@ -148,7 +153,7 @@ class KaryawanController extends Controller {
 			$aksi_tim_independent = (Auth::user()->roles != 'tim independent') ?
 			"" :
 			"<a href='".route('karyawan.show',$value->id)."'>Detail</a> - 
-				<a href='".route('karyawan.get.nilai',$value->id)."'>Input Nilai</a>
+			<a href='".route('karyawan.get.nilai',$value->id)."'>Input Nilai</a>
 			";
 
 			$l[0] = $value->nik;
@@ -157,8 +162,9 @@ class KaryawanController extends Controller {
 			$l[3] = $value->alamat;
 			$l[4] = $value->profilSyaratKaryawan->pendidikan_terakhir;
 
-			$l[5] =$value->lamaBekerja();
-			$l[6] = "
+			$l[5] =$value->lamaBekerja()." tahun";
+			$l[6] = $value->profilSyaratKaryawan->divisi->nama;
+			$l[7] = "
 				$aksi_admin
 				$aksi_tim_independent
 				";

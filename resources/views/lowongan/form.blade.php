@@ -1,6 +1,6 @@
 		<div class="form-group">
-			{!! Form::label('nama','Nama :') !!}
-			{!! Form::text('lowongan[nama]',@$lowongan->nama,['class'=>'form-control']) !!}
+			{!! Form::label('nama','Jabatan :') !!}
+			{!! Form::select('lowongan[id_jabatan]',$jabatan,@$lowongan->id_jabatan,['class'=>'form-control']) !!}
 		</div>
 
 		<div class="form-group">

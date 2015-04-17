@@ -5,6 +5,7 @@ use App\ProfilSyaratJabatan;
 use Carbon\Carbon;
 use App\ProfilSyaratKaryawan;
 use App\LulusSyarat;
+use App\Lowongan;
 
 class SeleksiLulusSyarat{
 
@@ -47,7 +48,16 @@ class SeleksiLulusSyarat{
 		 $tglMin = Carbon::now()->subYears($this->syaratJabatan->pengalaman_kerja)->toDateString();
 		 $pendidikanMin = $this->syaratJabatan->pendidikan_terakhir;
 
-		 return ProfilSyaratKaryawan::where('tgl_masuk_kerja','<=',$tglMin)->where('nilai_pendidikan_terakhir','>=',$pendidikanMin)->get();
+		$lulus = ProfilSyaratKaryawan::where('tgl_masuk_kerja','<=',$tglMin)->where('nilai_pendidikan_terakhir','>=',$pendidikanMin);
+		$query = '';
+		$lowongan = Lowongan::find($this->id_lowongan);
+		foreach ($lowongan->jabatan->divisi as $key => $value) {
+			$query .= " id_divisi = $value->id OR";
+		}
+
+		$lulus = $lulus->whereRaw(substr($query,0,-2));
+		
+		return $lulus->get();
 	}
 
 	//fungsi untuk menyimpan peserta yang lulus syarat

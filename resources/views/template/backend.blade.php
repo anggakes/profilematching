@@ -32,7 +32,7 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container"><a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">{!!Html::image("assets/logo/nindya-01.png");!!}Bootstrap Admin Template </a>
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">{!!Html::image("assets/logo/nindya-01.png");!!} Sistem Informasi Kenaikan Jabatan </a>
       <div class="nav-collapse">
         <ul class="nav pull-right">
         @if(Auth::check())
@@ -60,14 +60,16 @@
     <div class="container">
       <ul class="mainnav">
         @if(Auth::check())
-        <li class="active"><a href="{!! url("/")!!}"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
+        <li><a href="{!! url("/")!!}"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
         @if(Auth::user()->roles == 'admin')
         <li><a href="{!! route("user.index")!!}"><i class="icon-user"></i><span>Manajemen User</span> </a> </li>
-        @endif
+        <li><a href="{!! route("jabatan.index")!!}"><i class="icon-briefcase"></i><span>Jabatan</span> </a> </li>
          <li><a href="{!! route("karyawan.index")!!}"><i class="icon-list-alt"></i><span>Karyawan</span> </a> </li>
-        @if(Auth::user()->roles == 'admin')
-        <li><a href="{!! route("lowongan.index")!!}"><i class="icon-star"></i><span>Lowongan Jabatan</span> </a> </li>       
+       
         @endif
+
+        <li><a href="{!! route("lowongan.index")!!}"><i class="icon-star"></i><span>Lowongan Jabatan</span> </a> </li>       
+        
         @endif
       </ul>
     </div>
@@ -106,6 +108,40 @@
 </div>
 <!-- /main -->
 
+<div class="extra">
+  <div class="extra-inner">
+    <div class="container">
+      <div class="row">
+                    <div class="span8">
+                        <h4>
+                            Tentang Nindya Karya</h4>
+                       
+                        <span style='color:#000'>PT. Nindya Karya (Persero) yang merupakan perusahaan BUMN Jasa Konstruksi
+saat ini beroperasi diseluruh wilayah Republik Indonesia yang terbagi kedalam lima Unit Bisnis yang terdiri dari lima kantor Divisi meliputi Aceh, Sumatera Utara, Sumatera Barat, Riau, Sumatera Selatan, Bengkulu, Lampung, Jambi, Kepulauan Riau, seluruh Kalimantan, Jawa Tengah, Jawa Timur, Bali, NTB dan NTT, seluruh Sulawesi, Maluku, Maluku Utara, Papua, Papua Barat, Jawa Barat, Banten, dan DKI Jakarta Saat ini PT. Nindya Karya (Persero) berkomitmen meningkatkan kinerja perusahaan melalui "NINDYA Reborn" berdasarkan PP Nomor 69 tahun 2012 dengan melakukan restrukturisasi perusahaan secara menyeluruh baik logo perusahaan, visi, misi, nilai-nilai dasar, budaya, bidang keuangan, organisasi, SDM dan Sistem, guna menjadi perusahaan yang cerdas berbasis pada pengetahuan dan teknologi. Komitmen ini dibangun dengan semangat tinggi untuk fokus pada pelanggan serta keinginan yang kuat untuk menghasilkan produk yang berkualitas. Peningkatan kompetensi karyawan menjadi perhatian khusus perusahaan guna menjadikan karyawan lebih unggul dan tangguh, professional pada bidangnya. </span>
+
+                    </div>
+                    <!-- /span3 -->
+                    <div class="span4">
+                        <h4>
+                            Kontak :</h4>
+                        <span style='color:#000'>
+                        <ul>
+                            <li>Telp   : 0711-9281934</li>
+                            <li>Email  : Admin@nindyakarya.co.id</li>
+                            <li>Alamat : jl.jasdjand</li>
+                            
+                        </ul>
+                      </span>
+                    </div>
+                    <!-- /span3 -->
+                    
+                </div>
+      <!-- /row --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /extra-inner --> 
+</div>
 <!-- /extra -->
 <div class="footer">
   <div class="footer-inner">

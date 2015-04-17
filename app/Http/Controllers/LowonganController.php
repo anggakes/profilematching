@@ -7,6 +7,8 @@ use App\Http\Requests\LowonganRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\HttpResponse;
+use App\Jabatan;
+use App\LulusSyarat;
 
 class LowonganController extends Controller {
 
@@ -23,8 +25,10 @@ class LowonganController extends Controller {
 	 */
 
 	public function create()
-	{
-		return view('lowongan.create');
+	{	
+		$jabatan = Jabatan::lists('nama','id');
+		return view('lowongan.create')
+		->with('jabatan',$jabatan);
 	}
 
 	/**
@@ -50,11 +54,13 @@ class LowonganController extends Controller {
 	 */
 	public function show($id)
 	{	
-		$kandidat = NilaiProfilMatching::where('id_lowongan','=',$id)->orderBy('nilai','desc')->get();
-
+		$kandidat = LulusSyarat::where('id_lowongan','=',$id)->get();
+		$hasil = NilaiProfilMatching::where('id_lowongan','=',$id)->get();
+		
 		$lowongan=Lowongan::findOrFail($id);
 		return view('lowongan.show')
 		->with('lowongan',$lowongan)
+		->with('hasil',$hasil)
 		->with('kandidat',$kandidat);
 	}
 
@@ -65,9 +71,11 @@ class LowonganController extends Controller {
 	 * @return Response
 	 */
 	public function edit($id)
-	{
+	{	
+		$jabatan = Jabatan::lists('nama','id');
 		$lowongan=Lowongan::findOrFail($id);
-		return view('lowongan.edit')->with("lowongan",$lowongan);
+		return view('lowongan.edit')->with("lowongan",$lowongan)
+		->with('jabatan',$jabatan);
 	}
 
 	/**
@@ -101,12 +109,12 @@ class LowonganController extends Controller {
 		$l=array();
 		$i=0;
 		foreach ($lj as $value) {
-			$l[0] = $value->nama;
+			$l[0] = $value->jabatan->nama;
 			$l[1] = $value->kode;
 			$l[2] = "
-				<a href='".route('lowongan.edit',$value->id)."' data-toggle='modal' data-target='#myModal'>Edit</a> - 
+				<a href='".route('lowongan.edit',$value->id)."' >Edit</a> - 
 				<a href='".route('lowongan.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' >Hapus</a> - 
-				<a href='".route('lowongan.show',$value->id)."'>Detail & Proses Seleksi</a>
+				<a href='".route('lowongan.show',$value->id)."'>Proses Seleksi</a>
 			";
 
 			$data[$i]=$l;

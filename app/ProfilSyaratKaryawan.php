@@ -8,6 +8,7 @@ class ProfilSyaratKaryawan extends Model {
 	protected $guarded =['id'];
 	protected $fillable = [
 		'id_karyawan',
+		'id_divisi',
 		'pendidikan_terakhir',
 		'tgl_masuk_kerja',
 		'nilai_pendidikan_terakhir'
@@ -15,6 +16,10 @@ class ProfilSyaratKaryawan extends Model {
 
 	public function karyawan(){
 		return $this->belongsTo("App\Karyawan","id_karyawan");
+	}
+
+	public function divisi(){
+		return $this->belongsTo('App\Divisi','id_divisi');
 	}
 
 	

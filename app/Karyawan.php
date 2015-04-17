@@ -16,7 +16,8 @@ class Karyawan extends Model {
 		'nik',
 		'nama',
 		'agama',
-		'alamat'
+		'alamat',
+		'id_divisi'
 	];
 
 	public function lamaBekerja(){
@@ -27,6 +28,8 @@ class Karyawan extends Model {
 
 			return $lama_kerja;
 	}
+
+	
 
 	public function profilSyaratKaryawan(){
 		return $this->hasOne("App\ProfilSyaratKaryawan","id_karyawan"); 
