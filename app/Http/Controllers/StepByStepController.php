@@ -64,16 +64,29 @@ class StepByStepController extends Controller {
 
 
 		$pm = new ProfileMatching($id_lowongan,$bobot,$nilai);
-		$data['ki'] = $pm->convertGap($pm->gapKi());
-		$data['kp'] = $pm->convertGap($pm->gapKp());
-		$data['kt'] = $pm->convertGap($pm->gapKt());
+		$data = $pm->coreSecondaryFactor();
 		$lulus = LulusSyarat::where("id_lowongan",'=',$id_lowongan)->get();
 
 		return view('stepbystep.coresecondaryfactor')
-		->with('data',$data)
-		->with('nilai',$nilai)
+		->with('data',$data['coresec'])
 		->with('lulus',$lulus)
-		->with('bobot',$bobot)
+		->with('id_lowongan',$id_lowongan);
+	}
+
+	public function getTotalKompetensi($id_lowongan){
+
+		$bobot = $this->getMakeBobot($id_lowongan);
+ 
+		$nilai = $this->getMakeKaryawan($id_lowongan);
+
+
+		$pm = new ProfileMatching($id_lowongan,$bobot,$nilai);
+		$data = $pm->coreSecondaryFactor();
+		$lulus = LulusSyarat::where("id_lowongan",'=',$id_lowongan)->get();
+
+		return view('stepbystep.totalkompetensi')
+		->with('data',$data['total'])
+		->with('lulus',$lulus)
 		->with('id_lowongan',$id_lowongan);
 	}
 

@@ -3,16 +3,16 @@
 @section('content')
 
 <div class='row'>
-	<div class='span7'>
-		asas
+	<div class='span8'>
+		<img src="{!! asset('assets/images/gmapnk.jpg') !!}" style='width:700px' />
 	</div>
-	<div class='span4'>
+	<div class='span3'>
 			
 				<h3>Login</h3> <hr>
 				
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
+							
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
@@ -35,6 +35,16 @@
 							<label class="col-md-4 control-label">Password</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Sebagai</label>
+							<div class="col-md-6">
+								<select type="password" class="form-control" name="roles">
+						<option value='admin'>admin</option>
+						<option value='tim independent'>tim independent</option>
+
+								</select>
 							</div>
 						</div>
 

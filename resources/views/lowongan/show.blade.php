@@ -3,10 +3,8 @@
 <link rel="stylesheet" href="{!!URL::to('assets/print.css')!!}" type="text/css" media="print" />
 
 @section('content')
-@if(Auth::user()->roles == 'admin')
 <a href="{!! action('SeleksiJabatanController@getLulusSyarat',[$lowongan->id]
 	)!!}" class='btn btn-primary btn-lg pull-right'> Seleksi Lulus Syarat</a>
-@endif
 @if(Auth::user()->roles == 'tim independent')
 <a href="{!! action('SeleksiJabatanController@getSeleksiJabatan',[$lowongan->id]
 	)!!}" class='btn btn-primary btn-lg {!! (count($kandidat)>0)? "" : "disabled" !!} pull-right' id='btn1'> Seleksi Profile Matching</a>
@@ -25,7 +23,8 @@ Divisi :
 @endforeach
 </div>
 <br><br>
-<span class='label' style='padding:3px;font-size:14pt'>
+@if(Auth::user()->roles == 'tim independent')
+
 Kandidat terpilih : 
 @if(count($hasil)>0)
 {!! $hasil[0]->karyawan->nama; !!}
@@ -33,73 +32,76 @@ Kandidat terpilih :
 "Belum ada yang terpilih"
 @endif
 <br><br>
-</span>
-<table class='table table-bordered'>
+
+<table class='table table-bordered' style='width:80%; margin:0px auto'>
 <thead>
-<tr>
-<th>Peringkat</th>
-<th>Nama</th>
-<th>Divisi</th>
-@if(Auth::user()->roles == 'tim independent')
-<th>Nilai</th>
-@endif
-</tr>
+	<tr>
+	<th>Peringkat</th>
+	<th>Nama</th>
+	<th>Divisi</th>
+	@if(Auth::user()->roles == 'tim independent')
+	<th>Nilai Profile Matching</th>
+	@endif
+	</tr>
 </thead>
 <tbody>
 
 @if(count($hasil)>0)
 <?php $i=1; ?>
 @foreach ($hasil as $key => $value)
-<tr>
-<td>{!! $i++ !!}</td>
-<td>{!! $value->karyawan->nama !!}</td>
-<td>{!! $value->karyawan->profilSyaratKaryawan->divisi->nama !!}</td>
-<td>{!! $value->nilai!!}</td>
-</tr>
-@endforeach
-@else
-<tr>
-<td colspan=4>harap klik tombol proses</td>
-</tr>
+	<tr>
+		<td>{!! $i++ !!}</td>
+		<td>{!! $value->karyawan->nama !!}</td>
+		<td>{!! $value->karyawan->profilSyaratKaryawan->divisi->nama !!}</td>
+		<td>{!! $value->nilai!!}</td>
+	</tr>
+	@endforeach
+	@else
+	<tr>
+	<td colspan=4><center>harap klik tombol proses</center></td>
+	</tr>
 @endif
 </tbody>
 </table>
+<hr>
+@endif <!-- endif untuk badan indepnedent --> 
+
 
 <div class='lulus-syarat'> <!-- Lulus Syarat -->
-<hr>
-<h4>Kandidat Karyawan Lulus Syarat :</h4>
-<br>
 <div class='alert alert-info'>
 <h4>Info </h4> 
-Admin hanya dapat melakukan seleksi lulus syarat karyawan. untuk input nilai karyawan dan hasil seleksi dilakukan oleh tim independent.
+Admin hanya dapat melakukan seleksi lulus syarat karyawan. untuk input nilai karyawan dan hasil seleksi dilakukan oleh tim independent. warna Merah bearti nilai belum diinput
 </div>
 
-<table class='table table-bordered'>
+<h4>Kandidat Karyawan Lulus Syarat :</h4>
+<br>
+
+<table class='table table-bordered' style='width:80%; margin:0px auto'>
 <thead>
-<tr>
-<th>Nama</th>
-<th>Divisi</th>
-@if(Auth::user()->roles == 'tim independent')
-<th>Input Nilai</th>
-@endif
-</tr>
+	<tr>
+	<th>Nama</th>
+	<th>Divisi</th>
+	@if(Auth::user()->roles == 'tim independent')
+	<th>Input Nilai</th>
+	@endif
+	</tr>
 </thead>
 <tbody>
 
+
 @if(count($kandidat)>0)
 @foreach ($kandidat as $key => $value)
-<tr {!! (count($value->karyawan->nilaiKiKaryawan)==0) ? "style='background:pink'" : "" !!}  >
-<td>{!! $value->karyawan->nama !!}</td>
-<td>{!! $value->karyawan->profilSyaratKaryawan->divisi->nama !!}</td>
-@if(Auth::user()->roles == 'tim independent')
-<td><a href='{!!route("karyawan.get.nilai",[$lowongan->id,$value->karyawan->id]) !!}'>Input Nilai</a></td>
-@endif
-</tr>
-
+	<tr {!! (count($value->karyawan->nilaiKiKaryawan)==0) ? "style='background:pink'" : "" !!}  >
+		<td>{!! $value->karyawan->nama !!}</td>
+		<td>{!! $value->karyawan->profilSyaratKaryawan->divisi->nama !!}</td>
+		@if(Auth::user()->roles == 'tim independent')
+		<td><a href='{!!route("karyawan.get.nilai",[$lowongan->id,$value->karyawan->id]) !!}'>Input Nilai</a></td>
+		@endif
+	</tr>
 @endforeach
 @else
 <tr>
-<td colspan=3>harap klik tombol proses</td>
+<td colspan=3><center>harap klik tombol proses</center></td>
 </tr>
 @endif
 </tbody>

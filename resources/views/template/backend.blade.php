@@ -20,6 +20,15 @@
 {!!Html::script("assets/datatables/jquery.datatables.js")!!}
 {!!Html::style("assets/datatables/jquery.datatables.css")!!}
 <!-- Css -->
+<style type="text/css">
+.table thead td{
+  text-align: center;
+ }
+ .disabled {
+   pointer-events: none;
+   cursor: default;
+}
+</style>
 @yield('css')
 
 
@@ -29,6 +38,7 @@
     <![endif]-->
 </head>
 <body>
+
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container"><a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
@@ -60,7 +70,7 @@
     <div class="container">
       <ul class="mainnav">
         @if(Auth::check())
-        <li><a href="{!! url("/")!!}"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
+        <li><a href="{!! url("/")!!}"><i class="icon-home"></i><span>Home</span> </a> </li>
         @if(Auth::user()->roles == 'admin')
         <li><a href="{!! route("user.index")!!}"><i class="icon-user"></i><span>Manajemen User</span> </a> </li>
         <li><a href="{!! route("jabatan.index")!!}"><i class="icon-briefcase"></i><span>Jabatan</span> </a> </li>
