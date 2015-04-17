@@ -1,5 +1,7 @@
 @extends('template.backend')
 
+<link rel="stylesheet" href="{!!URL::to('assets/print.css')!!}" type="text/css" media="print" />
+
 @section('content')
 @if(Auth::user()->roles == 'admin')
 <a href="{!! action('SeleksiJabatanController@getLulusSyarat',[$lowongan->id]
@@ -7,11 +9,11 @@
 @endif
 @if(Auth::user()->roles == 'tim independent')
 <a href="{!! action('SeleksiJabatanController@getSeleksiJabatan',[$lowongan->id]
-	)!!}" class='btn btn-primary btn-lg {!! (count($kandidat)>0)? "" : "disabled" !!} pull-right'> Seleksi Profile Matching</a>
+	)!!}" class='btn btn-primary btn-lg {!! (count($kandidat)>0)? "" : "disabled" !!} pull-right' id='btn1'> Seleksi Profile Matching</a>
 <a href="{!! action('StepByStepController@getGap',[$lowongan->id]
-	)!!}" class='btn btn-primary btn-lg {!! (count($hasil)>0)? "" : "disabled" !!} pull-right'> Step By Step</a>
+	)!!}" class='btn btn-primary btn-lg {!! (count($hasil)>0)? "" : "disabled" !!} pull-right' id='btn1'> Step By Step</a>
 
-<a href="" class='btn btn-primary btn-lg pull-right'>Cetak</a>
+<a href="" class='btn btn-primary btn-lg pull-right' id='cetak' onclick='window.print()'>Cetak</a>
 @endif
 <h1>Jabatan {{ $lowongan->jabatan->nama }} </h1>
 
@@ -22,6 +24,7 @@ Divisi :
 <span class="label label-warning">{!! $value->nama !!}</span>
 @endforeach
 </div>
+<br><br>
 <span class='label' style='padding:3px;font-size:14pt'>
 Kandidat terpilih : 
 @if(count($hasil)>0)
@@ -56,7 +59,7 @@ Kandidat terpilih :
 @endforeach
 @else
 <tr>
-<td colspan=3>harap klik tombol proses</td>
+<td colspan=4>harap klik tombol proses</td>
 </tr>
 @endif
 </tbody>
