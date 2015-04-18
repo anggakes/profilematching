@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 17 Apr 2015 pada 11.33
+-- Generation Time: 18 Apr 2015 pada 13.05
 -- Versi Server: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -254,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `lulus_syarat` (
   `id_lowongan` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=113 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=116 ;
 
 --
 -- Dumping data untuk tabel `lulus_syarat`
@@ -262,7 +262,10 @@ CREATE TABLE IF NOT EXISTS `lulus_syarat` (
 
 INSERT INTO `lulus_syarat` (`id`, `id_karyawan`, `id_lowongan`, `created_at`, `updated_at`) VALUES
 (111, 20, 7, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(112, 21, 7, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(112, 21, 7, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(113, 20, 6, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(114, 21, 6, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(115, 22, 6, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -506,8 +509,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `roles`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', '$2y$10$vPWiO4ovgJ1uJry04SdQcOQsz13/46oKfZCm9XqN4QPmYHrE.NrKS', 'admin', 'KcJWTMEfXEsA9XQNdlJou2Yl2xuSbIkt51yXkRLLoQPBqDzDrVvyDM3Zoj2M', '2015-04-13 01:28:17', '2015-04-17 06:53:47'),
-(3, 'Arif', 'ariftm', '$2y$10$tUiq0h3aIjs.zy.Hngco5e/5HVpD.EmH9liKoIJJGYGTJAN3SAepW', 'tim independent', 'pMoCyEqiaiazbmMKvCyVBYIdWqKnmjHmyxIkRZT9hGDX19Cgo9eFdKBfOZpK', '2015-04-15 07:55:02', '2015-04-17 04:38:00');
+(1, 'admin', 'admin', '$2y$10$vPWiO4ovgJ1uJry04SdQcOQsz13/46oKfZCm9XqN4QPmYHrE.NrKS', 'admin', 'ftUaJfAM3Gaca91r2y1k5g6WUv4JFcoDBxVXu5b4G9rQuMcMKmZzLfy8adn8', '2015-04-13 01:28:17', '2015-04-17 13:55:28'),
+(3, 'Arif', 'ariftm', '$2y$10$tUiq0h3aIjs.zy.Hngco5e/5HVpD.EmH9liKoIJJGYGTJAN3SAepW', 'tim independent', 'h00sIHkl8CD2QH5iOLozTn3IZRCAuJjlqRVP8B75o02NR53Mk75UM52WH73G', '2015-04-15 07:55:02', '2015-04-17 13:53:23');
 
 --
 -- Indexes for dumped tables
@@ -680,7 +683,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `lulus_syarat`
 --
 ALTER TABLE `lulus_syarat`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=113;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=116;
 --
 -- AUTO_INCREMENT for table `nilai_ki_karyawan`
 --
