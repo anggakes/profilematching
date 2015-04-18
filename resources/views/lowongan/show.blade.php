@@ -23,15 +23,20 @@ Divisi :
 @endforeach
 </div>
 <br><br>
-@if(Auth::user()->roles == 'tim independent')
-
-Kandidat terpilih : 
+<center>
+<h3>
+	Kandidat terpilih :
 @if(count($hasil)>0)
-{!! $hasil[0]->karyawan->nama; !!}
+
+ {!! $hasil[0]->karyawan->nama; !!} dari divisi {!! $hasil[0]->karyawan->profilSyaratKaryawan->divisi->nama; !!}
+
 @else
 "Belum ada yang terpilih"
 @endif
+</h3>
+</center>
 <br><br>
+@if(Auth::user()->roles == 'tim independent')
 
 <table class='table table-bordered' style='width:80%; margin:0px auto'>
 <thead>
@@ -70,7 +75,7 @@ Kandidat terpilih :
 <div class='lulus-syarat'> <!-- Lulus Syarat -->
 <div class='alert alert-info'>
 <h4>Info </h4> 
-Admin hanya dapat melakukan seleksi lulus syarat karyawan. untuk input nilai karyawan dan hasil seleksi dilakukan oleh tim independent. warna Merah bearti nilai belum diinput
+Admin hanya dapat melakukan seleksi lulus syarat karyawan. untuk input nilai karyawan dan hasil seleksi dilakukan oleh tim independent.<br> warna Merah berarti nilai belum diinput
 </div>
 
 <h4>Kandidat Karyawan Lulus Syarat :</h4>
