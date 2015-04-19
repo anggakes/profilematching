@@ -72,14 +72,25 @@
         @if(Auth::check())
         <li><a href="{!! url("/")!!}"><i class="icon-home"></i><span>Home</span> </a> </li>
         @if(Auth::user()->roles == 'admin')
-        <li><a href="{!! route("user.index")!!}"><i class="icon-user"></i><span>Manajemen User</span> </a> </li>
-        <li><a href="{!! route("jabatan.index")!!}"><i class="icon-briefcase"></i><span>Jabatan</span> </a> </li>
-         
+        
+        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i><span>Manajemen Pengguna</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a id="sign" href="{!! route('user.create') !!}"><i class="icon-plus-sign"></i>Tambah</a></li>
+            <li><a href="{!! route("user.index")!!}" href="{!! route('user.create') !!}" data-toggle="modal" data-target="#myModal"><i class="icon-user"></i><span>Manajemen User</span> </a> </li>
+          </ul>
+        </li> 
        
-        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user-md"></i><span>Karyawan</span> <b class="caret"></b></a>
+        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-briefcase"></i><span>Jabatan</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a id="sign" href="{!! route('jabatan.create') !!}"><i class="icon-plus-sign"></i>Tambah</a></li>
+            <li><a href="{!! route("jabatan.index")!!}"><i class="icon-briefcase"></i><span>Kelola Jabatan</span> </a> </li>
+          </ul>
+        </li>
+
+        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-list-alt"></i><span>Karyawan</span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a id="sign" href="{!! route('karyawan.create') !!}"><i class="icon-plus-sign"></i>Tambah</a></li>
-            <li><a href="{!! route("karyawan.index")!!}"><i class="icon-user"></i><span>Kelola Karyawan</span> </a>       
+            <li><a href="{!! route("karyawan.index")!!}"><i class="icon-user-md"></i><span>Kelola Karyawan</span> </a></li>
           </ul>
         </li>
         @endif
