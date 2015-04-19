@@ -74,11 +74,21 @@
         @if(Auth::user()->roles == 'admin')
         <li><a href="{!! route("user.index")!!}"><i class="icon-user"></i><span>Manajemen User</span> </a> </li>
         <li><a href="{!! route("jabatan.index")!!}"><i class="icon-briefcase"></i><span>Jabatan</span> </a> </li>
-         <li><a href="{!! route("karyawan.index")!!}"><i class="icon-list-alt"></i><span>Karyawan</span> </a> </li>
+         
        
+        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user-md"></i><span>Karyawan</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a id="sign" href="{!! route('karyawan.create') !!}"><i class="icon-plus-sign"></i>Tambah</a></li>
+            <li><a href="{!! route("karyawan.index")!!}"><i class="icon-user"></i><span>Kelola Karyawan</span> </a>       
+          </ul>
+        </li>
         @endif
-
-        <li><a href="{!! route("lowongan.index")!!}"><i class="icon-star"></i><span>Lowongan Jabatan</span> </a> </li>       
+        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-star"></i><span>Lowongan Jabatan</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a id="sign" href="{!! route('lowongan.create') !!}"><i class="icon-plus-sign"></i>Tambah</a></li>
+            <li><a href="{!! route("lowongan.index")!!}"><i class="icon-star"></i><span>Kelola Lowongan</span> </a> </li>       
+          </ul>
+        </li>
         
         @endif
       </ul>
