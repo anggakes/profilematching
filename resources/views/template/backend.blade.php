@@ -75,8 +75,8 @@
         
         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i><span>Manajemen Pengguna</span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a id="sign" href="{!! route('user.create') !!}"><i class="icon-plus-sign"></i>Tambah</a></li>
-            <li><a href="{!! route("user.index")!!}" href="{!! route('user.create') !!}" data-toggle="modal" data-target="#myModal"><i class="icon-user"></i><span>Manajemen User</span> </a> </li>
+            <li><a id="sign" href="{!! route('user.create') !!}"  data-toggle="modal" data-target="#myModal"><i class="icon-plus-sign"></i>Tambah</a></li>
+            <li><a href="{!! route("user.index")!!}" href="{!! route('user.create') !!}"><i class="icon-user"></i><span>Manajemen User</span> </a> </li>
           </ul>
         </li> 
        
@@ -124,6 +124,7 @@
             <div class="widget-content" style='min-height: 300px'>
               <div class="widget big-stats-container">
 @yield('content')
+
 </div>
            </div>
          </div>
@@ -138,7 +139,7 @@
   <!-- /main-inner --> 
 </div>
 <!-- /main -->
-
+@include('modal') <!-- include modal Wrap -->
 <div class="extra">
   <div class="extra-inner">
     <div class="container">
@@ -187,6 +188,8 @@ saat ini beroperasi diseluruh wilayah Republik Indonesia yang terbagi kedalam li
   </div>
   <!-- /footer-inner --> 
 </div>
+
+
 <!-- /footer --> 
 <!-- Le javascript
 ================================================== --> 
