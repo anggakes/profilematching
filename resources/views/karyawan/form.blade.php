@@ -1,6 +1,6 @@
 		<div class="form-group">
-			{!! Form::label('nik','NIK :') !!}
-			{!! Form::text('karyawan[nik]',@$karyawan->nik,['class'=>'form-control']) !!}
+			{!! Form::label('nik','NIK :', 'class'=>'span2') !!}
+			{!! Form::text('karyawan[nik]',@$karyawan->nik,['class'=>'form-control span4']) !!}
 		</div>
 
 		<div class="form-group">

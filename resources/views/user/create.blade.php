@@ -8,32 +8,32 @@
    <div class="modal-body">
      
     <div class="form-group">
-      {!! Form::label('nama','Nama',['class'=>'col-sm-4 control-label']) !!}
+      {!! Form::label('nama','Nama  :',['class'=>'col-sm-4 control-label']) !!}
     <div class="col-sm-6">
       {!! Form::text('name','',['class'=>'form-control', 'placeholder'=>'Nama Lengkap'])!!}    
     </div>
-  </div>
+  </div><br>
    <div class="form-group">
-      {!! Form::label('username','Username',['class'=>'col-sm-4 control-label']) !!}
+      {!! Form::label('username  :','Username',['class'=>'col-sm-4 control-label']) !!}
     <div class="col-sm-6">
       {!! Form::text('username','',['class'=>'form-control', 'placeholder'=>'Username'])!!}    
     </div>
-  </div>
+  </div><br>
  <div class="form-group">
-              <label class="col-md-4 control-label">Password</label>
+              <label class="col-md-4 control-label">Password  :  </label>
               <div class="col-md-6">
                 <input type="password" class="form-control" name="password">
               </div>
-  </div>
+  </div><br>
 
             <div class="form-group">
-              <label class="col-md-4 control-label">Confirm Password</label>
+              <label class="col-md-4 control-label">Confirm Password  :</label>
               <div class="col-md-6">
                 <input type="password" class="form-control" name="password_confirmation">
               </div>
-            </div>
+            </div><br>
    <div class="form-group">
-      {!! Form::label('role','Role',['class'=>'col-sm-4 control-label']) !!}
+      {!! Form::label('role','Role  : ',['class'=>'col-sm-4 control-label']) !!}
     <div class="col-sm-6">
       {!! Form::select('roles',[
         'admin'=>'Admin',
@@ -41,7 +41,7 @@
         'top manager'=>'Top Manager'
       ],null,['class'=>'form-control', 'placeholder'=>'Hak Akses user'])!!}    
     </div>
-  </div>
+  </div><br>
      
   </div>			<!-- /modal-body -->
    <div class="modal-footer">
