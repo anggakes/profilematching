@@ -134,8 +134,8 @@ class UserController extends Controller {
 			$l[1] = $value->username;
 			$l[2] = $value->roles;
 			$l[3] = "
-				<a href='".route('user.edit',$value->id)."' data-toggle='modal' data-target='#myModal'>Edit</a> - 
-				<a href='".route('user.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' >Hapus</a>
+				<a href='".route('user.edit',$value->id)."' data-toggle='modal' data-target='#myModal' class='btn btn-warning'><i class='icon-pencil'></i>Edit</a> - 
+				<a href='".route('user.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' class='btn btn-danger'><i class='icon-trash'></i>Hapus</a>
 			";
 
 			$data[$i]=$l;

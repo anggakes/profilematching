@@ -112,9 +112,9 @@ class LowonganController extends Controller {
 			$l[0] = $value->jabatan->nama;
 			$l[1] = $value->kode;
 			$l[2] = "
-				<a href='".route('lowongan.edit',$value->id)."' >Edit</a> - 
-				<a href='".route('lowongan.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' >Hapus</a> - 
-				<a href='".route('lowongan.show',$value->id)."'>Proses Seleksi</a>
+				<a href='".route('lowongan.edit',$value->id)."' class='btn btn-warning'><i class='icon-pencil'></i>Edit</a> - 
+				<a href='".route('lowongan.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' class='btn btn-danger'><i class='icon-trash'></i>Hapus</a> - 
+				<a href='".route('lowongan.show',$value->id)."' class='btn btn-primary'><i class='icon-plus-sign'></i>Proses Seleksi</a>
 			";
 
 			$data[$i]=$l;

@@ -140,8 +140,8 @@ class JabatanController extends Controller {
 			}
 			$l[1] = $d;
 			$l[2] = "
-				<a href='".route('jabatan.edit',$value->id)."' >Edit</a> - 
-				<a href='".route('jabatan.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' >Hapus</a>
+				<a href='".route('jabatan.edit',$value->id)."' class='btn btn-warning'><i class='icon-pencil'></i>Edit</a> - 
+				<a href='".route('jabatan.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' class='btn btn-danger'><i class='icon-trash'></i>Hapus</a>
 			";
 
 			$data[$i]=$l;

@@ -146,9 +146,9 @@ class KaryawanController extends Controller {
 		foreach ($karyawan as $value) {
 			$aksi_admin = (Auth::user()->roles != 'admin') ?
 			"" :
-			"<a href='".route('karyawan.edit',$value->id)."' >Edit</a> - 
-			<a href='".route('karyawan.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' >Hapus</a> - 
-			<a href='".route('karyawan.show',$value->id)."'>Detail</a>
+			"<a href='".route('karyawan.edit',$value->id)."' class='btn btn-warning'><i class='icon-pencil'></i>Edit</a> - 
+			<a href='".route('karyawan.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' class='btn btn-danger'><i class='icon-trash'></i>Hapus</a> - 
+			<a href='".route('karyawan.show',$value->id)."' class='btn btn-primary'><i class='icon-plus-sign'></i>Detail</a>
 			";
 			$aksi_tim_independent = (Auth::user()->roles != 'tim independent') ?
 			"" :
