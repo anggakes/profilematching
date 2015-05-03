@@ -12,6 +12,8 @@
 */
 
 
+Route::group(["middleware"=>"auth"],function(){
+
 Route::get(
 	'karyawan/datatables',
 	['as'=>'karyawan.datatables',
@@ -54,7 +56,10 @@ Route::get(
 
 Route::resource('user','UserController');
 
+Route::controller('lowongan/{id_lowongan}/stepbystep','StepByStepController');
+
+});
 
 Route::controller('login','Auth\Authcontroller');
-Route::controller('lowongan/{id_lowongan}/stepbystep','StepByStepController');
+
 Route::get('/',['as'=>'home','uses'=>'Homecontroller@index']);
