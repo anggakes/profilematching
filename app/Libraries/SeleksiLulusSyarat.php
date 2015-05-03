@@ -65,6 +65,7 @@ class SeleksiLulusSyarat{
 	public function saveLulusSyarat(){
 
 		$lulus = $this->lulusSyarat();
+		$insert = array();
 		foreach ($lulus as $key => $value) {
 			$insert[] =[
 				'id_lowongan' => $this->id_lowongan,
