@@ -21,7 +21,7 @@
 				,@$lowongan->profilSyaratJabatan->pendidikan_terakhir,['class'=>'form-control']) !!}
 		</div>
 		<div class="form-group">
-			{!! Form::label('ki2','Costumer Service Orientation :') !!}
+			{!! Form::label('ki2','Pengalaman Kerja :') !!}
 			{!! Form::select('profil_syarat_jabatan[pengalaman_kerja]',
 				[
 					'1'=>'1 - 2 Tahun',

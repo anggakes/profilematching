@@ -4,4 +4,13 @@
 		display: none;
 	}
 
+	#tertanda{
+		display: inherit;
+	}
+}
+
+@media screen{
+	#tertanda{
+		display: none;
+	}
 }

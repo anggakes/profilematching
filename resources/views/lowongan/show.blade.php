@@ -1,6 +1,7 @@
 @extends('template.backend')
-
+<?php $timezone = date_default_timezone_get(); ?>
 <link rel="stylesheet" href="{!!URL::to('assets/print.css')!!}" type="text/css" media="print" />
+<link rel="stylesheet" href="{!!URL::to('assets/print.css')!!}" type="text/css" media="screen" />
 
 @section('content')
 <a href="{!! action('SeleksiJabatanController@getLulusSyarat',[$lowongan->id]
@@ -113,6 +114,12 @@ Admin hanya dapat melakukan seleksi lulus syarat karyawan. untuk input nilai kar
 </table>
 
 </div>  <!-- Lulus Syarat -->
-
+<div class="controls" style="float:right;" id="tertanda">
+		<br><br>
+       Palembang,  {!! date('d-m-Y',strtotime($timezone)) !!}
+       <p>Tertanda,</p>
+       <br /><br />
+       <p>Admin</p>
+    </div>
 @stop
 

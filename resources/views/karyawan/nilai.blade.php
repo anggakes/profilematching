@@ -7,7 +7,7 @@
 				<div class="control-group">											
 						<label class="control-label" for="kode">Integrity</label>
 						<div class="controls">
-							<input type="text" class="span6 disabled" name="ki[ki1]" value="{!! @$karyawan->nilaiKiKaryawan->ki1 !!}">
+							<input type="text" class="span6 " name="ki[ki1]" value="{!! @$karyawan->nilaiKiKaryawan->ki1 !!}">
 						</div> <!-- /controls -->				
 					</div> <!-- /control-group -->
 					<div class="control-group">											
